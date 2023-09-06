@@ -2,23 +2,23 @@
   <div class="content-area">
     <div class="header">
       <h1>Manage Products</h1>
-      <hr>
+      <hr />
     </div>
     <div class="container">
       <!--Add product form-->
       <div class="form-area">
         <h3>Create Product</h3>
-        <form>
+        <form #productsForm="ngForm" (ngSubmit)="onProductCreate(productsForm.value)">
           <label>Procuct Name</label>
-          <input type="text">
-      
-          <label>Procuct Description</label>
-          <input type="text">
-      
-          <label>Procuct Price</label>
-          <input type="text">
+          <input type="text" name="pName" ngModel />
 
-          <input type="submit" value="Add Product">
+          <label>Procuct Description</label>
+          <input type="text" name="desc" ngModel />
+
+          <label>Procuct Price</label>
+          <input type="text" name="price" ngModel />
+
+          <input type="submit" value="Add Product" />
         </form>
       </div>
 
@@ -41,7 +41,7 @@
             <td><button class="btn-delete">Delete</button></td>
           </tr>
         </table>
-        <hr>
+        <hr />
         <div class="action-btn-container">
           <button class="btn-fetch">Fetch Product</button>
           <button class="btn-clear">Clear Product</button>
