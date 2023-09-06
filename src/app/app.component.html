@@ -36,6 +36,11 @@
             <th>Price</th>
             <th></th>
           </tr>
+
+          <tr *ngIf="allProducts.length < 1">
+            <td colspan="5">No Products Available!</td>
+          </tr>
+
           <tr *ngFor="let prod of allProducts; index as i">
             <td>{{ i + 1 }}</td>
             <td>{{ prod.pName }}</td>
@@ -61,7 +66,9 @@
           >
             Fetch Product
           </button>
-          <button class="btn-clear" (click)="onClearItem()">Clear Product</button>
+          <button class="btn-clear" (click)="onClearItem()">
+            Clear Product
+          </button>
         </div>
       </div>
     </div>
