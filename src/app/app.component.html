@@ -37,8 +37,12 @@
             <th></th>
           </tr>
 
-          <tr *ngIf="allProducts.length < 1">
+          <tr *ngIf="allProducts.length < 1 && !isFetching">
             <td colspan="5">No Products Available!</td>
+          </tr>
+
+          <tr *ngIf="isFetching">
+            <td colspan="5">Loading....</td>
           </tr>
 
           <tr *ngFor="let prod of allProducts; index as i">

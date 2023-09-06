@@ -15,6 +15,7 @@ import { map, observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'AngularHttpRequest';
   allProducts: Product[] = [];
+  isFetching: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   private fetchProducts() {
+    this.isFetching = true;
     this.http
       .get<{ [key: string]: Product }>(
         'https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json'
@@ -59,6 +61,7 @@ export class AppComponent implements OnInit {
       .subscribe((products) => {
         console.warn(products);
         this.allProducts = products;
+        this.isFetching = false;
       });
   }
 
