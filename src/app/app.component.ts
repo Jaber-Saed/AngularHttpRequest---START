@@ -5,7 +5,7 @@ import {
   HttpHeaderResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchProducts();
+
   }
 
   onProductsFetch() {
