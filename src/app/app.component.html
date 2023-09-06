@@ -41,7 +41,11 @@
             <td>{{ prod.pName }}</td>
             <td>{{ prod.desc }}</td>
             <td>{{ prod.price }}</td>
-            <td><button class="btn-delete">Delete</button></td>
+            <td>
+              <button class="btn-delete" (click)="onDeletProduct(prod.id)">
+                Delete
+              </button>
+            </td>
             <!-- {{
               allProducts | json
             }} -->
@@ -49,8 +53,15 @@
         </table>
         <hr />
         <div class="action-btn-container">
-          <button class="btn-fetch" type = "submit" value="Fetch Product" (click)="onProductsFetch()">Fetch Product</button>
-          <button class="btn-clear">Clear Product</button>
+          <button
+            class="btn-fetch"
+            type="submit"
+            value="Fetch Product"
+            (click)="onProductsFetch()"
+          >
+            Fetch Product
+          </button>
+          <button class="btn-clear" (click)="onClearItem()">Clear Product</button>
         </div>
       </div>
     </div>

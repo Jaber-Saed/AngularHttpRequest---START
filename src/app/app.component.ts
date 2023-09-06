@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchProducts();
-
   }
 
   onProductsFetch() {
@@ -61,5 +60,21 @@ export class AppComponent implements OnInit {
         console.warn(products);
         this.allProducts = products;
       });
+  }
+
+  onDeletProduct(id: string) {
+    this.http
+      .delete(
+        'https://angularapi-b85d8-default-rtdb.firebaseio.com/products/' +
+          id +
+          '.json'
+      )
+      .subscribe();
+  }
+
+  onClearItem() {
+    this.http
+      .delete('https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json')
+      .subscribe();
   }
 }
