@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
+import { ProductsServiceService } from './Services/products-service.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { IonicModule } from '@ionic/angular';
   exports: [
     AppComponent
   ],
-  providers: [],
+  providers: [ProductsServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

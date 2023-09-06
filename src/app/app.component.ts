@@ -6,6 +6,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { map, observable } from 'rxjs';
+import { ProductsServiceService } from './Services/products-service.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,10 @@ export class AppComponent implements OnInit {
   allProducts: Product[] = [];
   isFetching: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private productsServiceService: ProductsServiceService
+  ) {}
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -28,17 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   onProductCreate(product: Product) {
-    console.warn(product);
-    const Header = new HttpHeaders({ myHeader: 'MsJaber' });
-    this.http
-      .post<{ name: string }>(
-        'https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json',
-        product,
-        { headers: Header }
-      )
-      .subscribe((res) => {
-        console.warn(res);
-      });
+    this.productsServiceService.createProduct(product);
   }
 
   private fetchProducts() {
@@ -77,7 +71,9 @@ export class AppComponent implements OnInit {
 
   onClearItem() {
     this.http
-      .delete('https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json')
+      .delete(
+        'https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json'
+      )
       .subscribe();
   }
 }
