@@ -16,7 +16,14 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchProducts();
+  }
+
+  onProductsFetch() {
+    this.fetchProducts();
+  }
+
   onProductCreate(product: Product) {
     console.warn(product);
     const Header = new HttpHeaders({ myHeader: 'MsJaber' });
@@ -26,6 +33,14 @@ export class AppComponent implements OnInit {
         product,
         { headers: Header }
       )
+      .subscribe((res) => {
+        console.warn(res);
+      });
+  }
+
+  private fetchProducts() {
+    this.http
+      .get('https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json')
       .subscribe((res) => {
         console.warn(res);
       });
