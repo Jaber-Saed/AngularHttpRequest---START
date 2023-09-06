@@ -10,6 +10,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
+  transition: background-color 0.3s ease;
 }
 
 /* Main container */
@@ -20,12 +21,38 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  -webkit-animation: fadeIn 0.5s ease;
+          animation: fadeIn 0.5s ease;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Header styles */
 .header {
   text-align: center;
   margin-bottom: 20px;
+  -webkit-animation: fadeIn 0.5s ease;
+          animation: fadeIn 0.5s ease;
 }
 
 .header h1 {
@@ -39,6 +66,8 @@ body {
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  -webkit-animation: fadeIn 0.5s ease;
+          animation: fadeIn 0.5s ease;
 }
 
 .form-area h3 {
@@ -58,6 +87,11 @@ body {
   margin-top: 5px;
   border: 1px solid #ddd;
   border-radius: 3px;
+  transition: border-color 0.3s ease;
+}
+
+.form-area input[type="text"]:focus {
+  border-color: #007BFF;
 }
 
 .form-area input[type="submit"] {
@@ -68,6 +102,11 @@ body {
   margin-top: 15px;
   border-radius: 3px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-area input[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
 /* Product display area styles */
@@ -106,6 +145,11 @@ body {
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-display-area .btn-delete:hover {
+  background-color: #c82333;
 }
 
 /* Action button container */
@@ -120,14 +164,23 @@ body {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.action-btn-container .btn-fetch {
+.action-btn-container button.btn-fetch {
   background-color: #007BFF;
   color: #fff;
 }
 
-.action-btn-container .btn-clear {
+.action-btn-container button.btn-fetch:hover {
+  background-color: #0056b3;
+}
+
+.action-btn-container button.btn-clear {
   background-color: #ccc;
   color: #333;
+}
+
+.action-btn-container button.btn-clear:hover {
+  background-color: #b8b8b8;
 }

@@ -8,7 +8,10 @@
       <!--Add product form-->
       <div class="form-area">
         <h3>Create Product</h3>
-        <form #productsForm="ngForm" (ngSubmit)="onProductCreate(productsForm.value)">
+        <form
+          #productsForm="ngForm"
+          (ngSubmit)="onProductCreate(productsForm.value)"
+        >
           <label>Procuct Name</label>
           <input type="text" name="pName" ngModel />
 
@@ -27,23 +30,26 @@
         <h3>All Products</h3>
         <table id="products">
           <tr>
-            <th>#</th>
-            <th>Name</th>
+            <th>ID</th>
+            <th>product</th>
             <th>Description</th>
             <th>Price</th>
             <th></th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>iPhone</td>
-            <td>iPhone Pro 11</td>
-            <td>$1299</td>
+          <tr *ngFor="let prod of allProducts; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ prod.pName }}</td>
+            <td>{{ prod.desc }}</td>
+            <td>{{ prod.price }}</td>
             <td><button class="btn-delete">Delete</button></td>
+            <!-- {{
+              allProducts | json
+            }} -->
           </tr>
         </table>
         <hr />
         <div class="action-btn-container">
-          <button class="btn-fetch" >Fetch Product</button>
+          <button class="btn-fetch">Fetch Product</button>
           <button class="btn-clear">Clear Product</button>
         </div>
       </div>

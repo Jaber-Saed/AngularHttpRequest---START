@@ -5,6 +5,7 @@ import {
   HttpHeaderResponse,
   HttpHeaders,
 } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'AngularHttpRequest';
+  allProducts: Product[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +30,7 @@ export class AppComponent implements OnInit {
     console.warn(product);
     const Header = new HttpHeaders({ myHeader: 'MsJaber' });
     this.http
-      .post(
+      .post<{ name: string }>(
         'https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json',
         product,
         { headers: Header }
@@ -40,9 +42,23 @@ export class AppComponent implements OnInit {
 
   private fetchProducts() {
     this.http
-      .get('https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json')
-      .subscribe((res) => {
-        console.warn(res);
+      .get<{ [key: string]: Product }>(
+        'https://angularapi-b85d8-default-rtdb.firebaseio.com/products.json'
+      )
+      .pipe(
+        map((res) => {
+          const products = [];
+          for (const key in res) {
+            if (res.hasOwnProperty(key)) {
+              products.push({ ...res[key], id: key });
+            }
+          }
+          return products;
+        })
+      )
+      .subscribe((products) => {
+        console.warn(products);
+        this.allProducts = products;
       });
   }
 }
